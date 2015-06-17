@@ -172,10 +172,6 @@ echo "    >  cd ~"
 echo
 echo "    >  git clone git@github.com:bmschmidt/federalist.git"
 echo
-echo "    In line 27 of federalist/federalist/scripts/makeConfiguration.py, change"
-echo
-echo "    /.my.cnf  --> os.path.expanduser(\"~/.my.cnf\")"
-echo 
 echo "    >  vim federalist/federalist/scripts/makeConfiguration.py"
 echo "    Now run the bookworm"
 echo
