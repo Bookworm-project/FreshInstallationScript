@@ -31,6 +31,7 @@ sudo pip install regex
 sudo pip install nltk
 sudo pip install numpy
 sudo pip install mysql-python
+sudo pip install python-dateutil
 
 #
 echo
@@ -170,7 +171,7 @@ echo "Here is a list of commands:"
 echo
 echo "    >  cd ~"
 echo
-echo "    >  git clone git@github.com:bmschmidt/federalist.git"
+echo "    >  git clone http://github.com:bmschmidt/federalist.git"
 echo
 echo "    >  vim federalist/federalist/scripts/makeConfiguration.py"
 echo "    Now run the bookworm"
