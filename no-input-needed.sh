@@ -18,7 +18,7 @@ echo "Setting up a LAMP server on EC2"
 echo
 
 sudo apt-get install -y lamp-server^
-sudo mysql_secure_installation
+
 
 
 
@@ -38,7 +38,7 @@ sudo pip install mysql-python
 sudo pip install python-dateutil
 
 
-
+# At this point, mysql has no root password.
 
 keeper="keeper"
 keeperpass=""
@@ -46,18 +46,18 @@ keeperpass=""
 reader="reader"
 readerpass=""
 
-mysql -u root -p --execute="CREATE USER '$keeper'@'localhost' IDENTIFIED BY '$keeperpass'; \
-	GRANT ALL PRIVILEGES ON *.* TO '$keeper'@'localhost' WITH GRANT OPTION; \
-	CREATE USER '$keeper'@'%' IDENTIFIED BY '$keeperpass'; \
-	GRANT ALL PRIVILEGES ON *.* TO '$keeper'@'%' WITH GRANT OPTION; \
-	CREATE USER 'admin'@'localhost'; \
-	GRANT RELOAD,PROCESS ON *.* TO 'admin'@'localhost'; \
-	CREATE USER '$reader'@'localhost' IDENTIFIED BY '$readerpass'; \
-	GRANT SELECT ON *.* TO '$reader'@'localhost' WITH GRANT OPTION; \
-	CREATE USER '$reader'@'%' IDENTIFIED BY '$readerpass'; \
-	GRANT SELECT ON *.* TO '$reader'@'%' WITH GRANT OPTION;"
+# These commands are sufficient to create a user if it does not exist.
+# http://stackoverflow.com/questions/13357760/mysql-create-user-if-not-exists
 
-cd ~
+mysql -u root --execute="
+	GRANT ALL PRIVILEGES ON *.* TO '$keeper'@'localhost' WITH GRANT OPTION; \
+	GRANT RELOAD,PROCESS ON *.* TO 'admin'@'localhost'; \
+	GRANT SELECT ON *.* TO '$reader'@'localhost'; \
+"
+
+# No longer changing to `~/`, because as root that isn't the user's home directory.
+# So now these commands must be run from inside ~, which seems reasonable?
+
 echo " " >> .my.cnf
 echo "#" >> .my.cnf
 echo "# The MySQL Database Server Configuration File" >> .my.cnf
