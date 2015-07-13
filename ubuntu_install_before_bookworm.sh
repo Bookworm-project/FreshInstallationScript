@@ -1,39 +1,3 @@
-#!/bin/bash
-
-#
-echo
-echo "Set up the basics"
-echo
-
-sudo apt-get update -y
-sudo apt-get upgrade -y
-sudo apt-get dist-upgrade -y
-sudo apt-get install -y gcc
-sudo apt-get install -y build-essential python-dev libmysqlclient-dev
-sudo apt-get install -y parallel
-
-#
-echo
-echo "Setting up a LAMP server on EC2"
-echo
-
-sudo apt-get install -y lamp-server^
-sudo mysql_secure_installation
-
-#
-echo
-echo "Install Python and Extensions"
-echo
-
-sudo apt-get install -y python-dev
-sudo apt-get install -y python-pip
-sudo pip install regex
-sudo pip install nltk
-sudo pip install numpy
-sudo pip install mysql-python
-sudo pip install python-dateutil
-
-#
 echo
 echo "Setting up MySQL User Accounts"
 echo
