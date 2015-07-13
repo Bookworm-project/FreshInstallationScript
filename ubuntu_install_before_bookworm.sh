@@ -1,3 +1,6 @@
+sudo mysql_secure_installation
+
+
 echo
 echo "Setting up MySQL User Accounts"
 echo
