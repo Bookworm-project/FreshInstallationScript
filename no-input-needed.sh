@@ -9,6 +9,11 @@ sudo apt-get update -y
 sudo apt-get upgrade -y
 sudo apt-get dist-upgrade -y
 sudo apt-get install -y gcc
+
+sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password'
+sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password'
+
+sudo apt-get install -y mysql-server-5.5
 sudo apt-get install -y build-essential python-dev libmysqlclient-dev
 sudo apt-get install -y parallel
 
@@ -18,10 +23,6 @@ echo "Setting up a LAMP server on EC2"
 echo
 
 sudo apt-get install -y lamp-server^
-
-
-
-
 sudo apt-get install -y git
 
 #
